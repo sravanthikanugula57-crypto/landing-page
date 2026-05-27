@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spice Garden — Authentic Indian Restaurant</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --saffron: #F4A22D;
+    --deep: #1A0A00;
+    --cream: #FDF6EC;
+    --rust: #C0392B;
+    --gold: #E8C97A;
+    --text: #3D1F0A;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--deep);
+    color: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 5%;
+    background: rgba(26,10,0,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(244,162,45,0.15);
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--saffron);
+    letter-spacing: 0.05em;
+  }
+
+  .logo span { color: var(--cream); font-style: italic; }
+
+  nav ul { list-style: none; display: flex; gap: 2rem; }
+  nav ul a {
+    text-decoration: none; color: var(--cream);
+    font-size: 0.9rem; letter-spacing: 0.08em;
+    text-transform: uppercase; font-weight: 500;
+    transition: color 0.3s;
+  }
+  nav ul a:hover { color: var(--saffron); }
+
+  .nav-btn {
+    background: var(--saffron); color: var(--deep);
+    padding: 0.6rem 1.4rem; border-radius: 2px;
+    text-decoration: none; font-weight: 500;
+    font-size: 0.85rem; letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: background 0.3s;
+  }
+  .nav-btn:hover { background: var(--gold); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    position: relative; overflow: hidden;
+    padding: 0 5%;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 70% 50%, rgba(192,57,43,0.18) 0%, transparent 60%),
+      radial-gradient(ellipse at 20% 80%, rgba(244,162,45,0.12) 0%, transparent 50%),
+      linear-gradient(135deg, #1A0A00 0%, #2D1200 50%, #1A0A00 100%);
+  }
+
+  /* Decorative spice circles */
+  .spice-circle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.06;
+    animation: float 8s ease-in-out infinite;
+  }
+  .sc1 { width: 500px; height: 500px; right: -100px; top: -100px; background: var(--saffron); animation-delay: 0s; }
+  .sc2 { width: 300px; height: 300px; right: 200px; bottom: -50px; background: var(--rust); animation-delay: 3s; }
+  .sc3 { width: 200px; height: 200px; left: 30%; top: 20%; background: var(--gold); animation-delay: 5s; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 650px;
+    animation: fadeUp 1s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-tag {
+    display: inline-block;
+    border: 1px solid var(--saffron);
+    color: var(--saffron);
+    padding: 0.3rem 1rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 1s ease 0.2s both;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 1s ease 0.4s both;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--saffron);
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+    color: rgba(253,246,236,0.7);
+    line-height: 1.7;
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 1s ease 0.6s both;
+  }
+
+  .hero-btns {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 1s ease 0.8s both;
+  }
+
+  .btn-primary {
+    background: var(--saffron); color: var(--deep);
+    padding: 1rem 2rem; border-radius: 2px;
+    text-decoration: none; font-weight: 500;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold); transform: translateY(-2px); }
+
+  .btn-outline {
+    border: 1px solid rgba(253,246,236,0.4); color: var(--cream);
+    padding: 1rem 2rem; border-radius: 2px;
+    text-decoration: none; font-weight: 400;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--saffron); color: var(--saffron); }
+
+  .hero-image {
+    position: absolute; right: 5%; top: 50%;
+    transform: translateY(-50%);
+    width: 420px; height: 420px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(244,162,45,0.15), rgba(192,57,43,0.1));
+    border: 1px solid rgba(244,162,45,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10rem;
+    animation: fadeUp 1s ease 0.5s both;
+  }
+
+  /* STATS */
+  .stats {
+    display: flex; gap: 0;
+    border-top: 1px solid rgba(244,162,45,0.15);
+    border-bottom: 1px solid rgba(244,162,45,0.15);
+  }
+
+  .stat {
+    flex: 1; padding: 2.5rem 5%;
+    text-align: center;
+    border-right: 1px solid rgba(244,162,45,0.15);
+  }
+  .stat:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem; color: var(--saffron);
+    display: block; line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.8rem; letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(253,246,236,0.5);
+  }
+
+  /* MENU */
+  .section { padding: 6rem 5%; }
+
+  .section-tag {
+    display: block;
+    font-size: 0.75rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--saffron);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    margin-bottom: 3rem;
+    line-height: 1.2;
+  }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5px;
+    background: rgba(244,162,45,0.1);
+    border: 1px solid rgba(244,162,45,0.1);
+  }
+
+  .menu-card {
+    background: var(--deep);
+    padding: 2rem;
+    transition: background 0.3s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .menu-card::before {
+    content: '';
+    position: absolute; bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--saffron);
+    transition: width 0.4s ease;
+  }
+
+  .menu-card:hover { background: rgba(244,162,45,0.05); }
+  .menu-card:hover::before { width: 100%; }
+
+  .menu-emoji { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+
+  .menu-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; margin-bottom: 0.5rem;
+  }
+
+  .menu-card p {
+    font-size: 0.9rem;
+    color: rgba(253,246,236,0.55);
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+  }
+
+  .menu-price {
+    color: var(--saffron);
+    font-weight: 500;
+    font-size: 1.1rem;
+  }
+
+  .menu-badge {
+    position: absolute; top: 1rem; right: 1rem;
+    background: var(--rust);
+    color: white; font-size: 0.65rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.2rem 0.6rem; border-radius: 2px;
+  }
+
+  /* ABOUT */
+  .about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    padding: 6rem 5%;
+    background: rgba(244,162,45,0.03);
+    border-top: 1px solid rgba(244,162,45,0.1);
+  }
+
+  .about-visual {
+    position: relative;
+  }
+
+  .about-img-placeholder {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: linear-gradient(135deg, rgba(244,162,45,0.15), rgba(192,57,43,0.1));
+    border: 1px solid rgba(244,162,45,0.2);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 6rem;
+  }
+
+  .about-badge {
+    position: absolute;
+    bottom: -1.5rem; right: -1.5rem;
+    background: var(--saffron); color: var(--deep);
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    font-weight: 700;
+    box-shadow: 0 8px 32px rgba(244,162,45,0.3);
+  }
+
+  .about-badge span { font-size: 2rem; line-height: 1; }
+  .about-badge small { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; }
+
+  .about-content .section-title { margin-bottom: 1.5rem; }
+
+  .about-content p {
+    color: rgba(253,246,236,0.65);
+    line-height: 1.8; margin-bottom: 1.5rem;
+  }
+
+  .features {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1rem; margin-top: 2rem;
+  }
+
+  .feature {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+  }
+
+  .feature-icon {
+    font-size: 1.3rem; margin-top: 0.1rem; flex-shrink: 0;
+  }
+
+  .feature-text strong {
+    display: block; font-size: 0.9rem; margin-bottom: 0.2rem;
+  }
+  .feature-text span {
+    font-size: 0.8rem; color: rgba(253,246,236,0.45);
+  }
+
+  /* TESTIMONIALS */
+  .testimonials { padding: 6rem 5%; text-align: center; }
+
+  .testimonials .section-title { margin-bottom: 3rem; }
+
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    text-align: left;
+  }
+
+  .testi-card {
+    border: 1px solid rgba(244,162,45,0.15);
+    padding: 2rem;
+    border-radius: 4px;
+    position: relative;
+    transition: border-color 0.3s;
+  }
+
+  .testi-card:hover { border-color: rgba(244,162,45,0.4); }
+
+  .testi-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem; color: var(--saffron);
+    opacity: 0.3; line-height: 0.5;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .testi-card p {
+    color: rgba(253,246,236,0.7);
+    line-height: 1.7; font-style: italic;
+    margin-bottom: 1.5rem;
+  }
+
+  .testi-author { display: flex; align-items: center; gap: 0.75rem; }
+
+  .testi-avatar {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--saffron), var(--rust));
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; color: white; font-size: 1rem;
+  }
+
+  .testi-name strong { display: block; font-size: 0.9rem; }
+  .testi-name span { font-size: 0.75rem; color: rgba(253,246,236,0.4); }
+
+  .stars { color: var(--saffron); font-size: 0.85rem; margin-bottom: 0.5rem; }
+
+  /* RESERVATION */
+  .reservation {
+    margin: 0 5% 6rem;
+    padding: 4rem;
+    background: linear-gradient(135deg, rgba(244,162,45,0.12), rgba(192,57,43,0.08));
+    border: 1px solid rgba(244,162,45,0.2);
+    border-radius: 4px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .reservation h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem; margin-bottom: 1rem;
+  }
+
+  .reservation p {
+    color: rgba(253,246,236,0.6); line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .form-group { margin-bottom: 1rem; }
+
+  .form-group input, .form-group select {
+    width: 100%;
+    background: rgba(253,246,236,0.05);
+    border: 1px solid rgba(244,162,45,0.2);
+    color: var(--cream);
+    padding: 0.9rem 1.2rem;
+    border-radius: 2px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+
+  .form-group input:focus, .form-group select:focus {
+    border-color: var(--saffron);
+  }
+
+  .form-group select option { background: var(--deep); }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid rgba(244,162,45,0.15);
+    padding: 3rem 5%;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1.5rem;
+  }
+
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; color: var(--saffron);
+  }
+
+  .footer-links { display: flex; gap: 2rem; }
+  .footer-links a {
+    text-decoration: none;
+    color: rgba(253,246,236,0.45);
+    font-size: 0.85rem;
+    transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--saffron); }
+
+  .footer-copy {
+    font-size: 0.8rem;
+    color: rgba(253,246,236,0.25);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero-image { display: none; }
+    nav ul { display: none; }
+    .about { grid-template-columns: 1fr; gap: 3rem; }
+    .about-badge { display: none; }
+    .reservation { grid-template-columns: 1fr; gap: 2rem; padding: 2rem; }
+    .stats { flex-direction: column; }
+    .stat { border-right: none; border-bottom: 1px solid rgba(244,162,45,0.15); }
+    .features { grid-template-columns: 1fr; }
+    footer { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Spice<span>Garden</span></div>
+  <ul>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#reserve">Contact</a></li>
+  </ul>
+  <a href="#reserve" class="nav-btn">Reserve Table</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="spice-circle sc1"></div>
+  <div class="spice-circle sc2"></div>
+  <div class="spice-circle sc3"></div>
+
+  <div class="hero-content">
+    <div class="hero-tag">Est. 1998 · Hyderabad, India</div>
+    <h1>Taste the <em>Art</em> of Authentic Spice</h1>
+    <p>Where every dish tells a story — crafted from century-old recipes, hand-ground spices, and the warmth of a family kitchen.</p>
+    <div class="hero-btns">
+      <a href="#menu" class="btn-primary">Explore Menu</a>
+      <a href="#reserve" class="btn-outline">Book a Table</a>
+    </div>
+  </div>
+
+  <div class="hero-image">🍛</div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <span class="stat-num">25+</span>
+    <span class="stat-label">Years of Legacy</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num">120+</span>
+    <span class="stat-label">Menu Items</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num">50k+</span>
+    <span class="stat-label">Happy Guests</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num">4.9★</span>
+    <span class="stat-label">Average Rating</span>
+  </div>
+</div>
+
+<!-- MENU -->
+<section class="section" id="menu">
+  <span class="section-tag">Our Specialities</span>
+  <h2 class="section-title">Handcrafted with<br>Love & Spice</h2>
+
+  <div class="menu-grid">
+    <div class="menu-card">
+      <div class="menu-badge">Chef's Pick</div>
+      <span class="menu-emoji">🍗</span>
+      <h3>Butter Chicken</h3>
+      <p>Tender chicken in a rich, velvety tomato-butter sauce with aromatic spices.</p>
+      <span class="menu-price">₹320</span>
+    </div>
+    <div class="menu-card">
+      <span class="menu-emoji">🍖</span>
+      <h3>Hyderabadi Biryani</h3>
+      <p>Slow-cooked dum biryani with fragrant basmati, saffron, and tender meat.</p>
+      <span class="menu-price">₹380</span>
+    </div>
+    <div class="menu-card">
+      <div class="menu-badge">Veg Special</div>
+      <span class="menu-emoji">🥘</span>
+      <h3>Paneer Makhani</h3>
+      <p>Soft cottage cheese cubes in a creamy, mildly spiced tomato gravy.</p>
+      <span class="menu-price">₹280</span>
+    </div>
+    <div class="menu-card">
+      <span class="menu-emoji">🫓</span>
+      <h3>Garlic Naan</h3>
+      <p>Fresh-baked leavened bread brushed with garlic butter, straight from the tandoor.</p>
+      <span class="menu-price">₹60</span>
+    </div>
+    <div class="menu-card">
+      <div class="menu-badge">Popular</div>
+      <span class="menu-emoji">🍲</span>
+      <h3>Dal Tadka</h3>
+      <p>Yellow lentils tempered with cumin, garlic, and dried red chilies.</p>
+      <span class="menu-price">₹180</span>
+    </div>
+    <div class="menu-card">
+      <span class="menu-emoji">🍮</span>
+      <h3>Gulab Jamun</h3>
+      <p>Soft milk-solid dumplings soaked in rose-cardamom sugar syrup.</p>
+      <span class="menu-price">₹120</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div class="about" id="about">
+  <div class="about-visual">
+    <div class="about-img-placeholder">👨‍🍳</div>
+    <div class="about-badge">
+      <span>25</span>
+      <small>Years of Flavor</small>
+    </div>
+  </div>
+  <div class="about-content">
+    <span class="section-tag">Our Story</span>
+    <h2 class="section-title">A Tradition Born in a Family Kitchen</h2>
+    <p>Spice Garden began as a humble dhaba on the outskirts of Hyderabad in 1998. What started with three recipes and a clay oven has grown into a beloved dining destination.</p>
+    <p>Every ingredient is sourced fresh from local farms. Every spice is ground in-house. Every recipe is a secret passed down through generations.</p>
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon">🌿</div>
+        <div class="feature-text">
+          <strong>Farm Fresh</strong>
+          <span>Locally sourced daily</span>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🔥</div>
+        <div class="feature-text">
+          <strong>Tandoor Cooked</strong>
+          <span>Traditional clay oven</span>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🫙</div>
+        <div class="feature-text">
+          <strong>Hand Ground Spices</strong>
+          <span>No pre-mixed masalas</span>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">❤️</div>
+        <div class="feature-text">
+          <strong>Family Recipes</strong>
+          <span>3 generations old</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="reviews">
+  <span class="section-tag">Guest Reviews</span>
+  <h2 class="section-title">What Our Guests Say</h2>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <span class="testi-quote">"</span>
+      <p>The Hyderabadi Biryani here is the most authentic I've had outside my grandmother's home. The aroma alone is worth the visit.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">R</div>
+        <div class="testi-name">
+          <strong>Ravi Shankar</strong>
+          <span>Food Blogger, Hyderabad</span>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <span class="testi-quote">"</span>
+      <p>We celebrated our anniversary here and the experience was magical. The staff treated us like family and the food was extraordinary.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">P</div>
+        <div class="testi-name">
+          <strong>Priya & Karthik</strong>
+          <span>Regular Guests</span>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <span class="testi-quote">"</span>
+      <p>As a chef myself, I rarely compliment others — but the depth of flavor in every dish here is genuinely impressive. A must visit.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">A</div>
+        <div class="testi-name">
+          <strong>Ananya Reddy</strong>
+          <span>Executive Chef, Bangalore</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVATION -->
+<div class="reservation" id="reserve">
+  <div>
+    <h2>Reserve Your Table</h2>
+    <p>Book in advance and we'll make sure your table is ready with fresh flowers and warm hospitality.</p>
+    <div style="display:flex; flex-direction:column; gap:0.75rem;">
+      <div style="display:flex; align-items:center; gap:0.75rem; color:rgba(253,246,236,0.6); font-size:0.9rem;">
+        <span>📞</span> +91 98765 43210
+      </div>
+      <div style="display:flex; align-items:center; gap:0.75rem; color:rgba(253,246,236,0.6); font-size:0.9rem;">
+        <span>📍</span> Banjara Hills, Hyderabad — 500034
+      </div>
+      <div style="display:flex; align-items:center; gap:0.75rem; color:rgba(253,246,236,0.6); font-size:0.9rem;">
+        <span>🕐</span> Open daily: 11 AM – 11 PM
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="form-row">
+      <div class="form-group">
+        <input type="text" placeholder="Your Name">
+      </div>
+      <div class="form-group">
+        <input type="tel" placeholder="Phone Number">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <input type="date">
+      </div>
+      <div class="form-group">
+        <input type="time">
+      </div>
+    </div>
+    <div class="form-group">
+      <select>
+        <option value="">Number of Guests</option>
+        <option>1–2 Guests</option>
+        <option>3–4 Guests</option>
+        <option>5–6 Guests</option>
+        <option>7+ Guests</option>
+      </select>
+    </div>
+    <button class="btn-primary" style="width:100%; border:none; cursor:pointer; font-size:1rem; padding:1.1rem;">
+      Confirm Reservation
+    </button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">SpiceGarden</div>
+  <div class="footer-links">
+    <a href="#menu">Menu</a>
+    <a href="#about">About</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#reserve">Reserve</a>
+  </div>
+  <div class="footer-copy">© 2024 Spice Garden. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
